@@ -14,4 +14,12 @@ export const StyledDisplay = styled.div`
   background: #000;
   font-family: Comic Sans MS, Arial;
   font-size: 0.8rem;
+
+  span {
+    color: '#999';
+    font-family: Comic Sans MS, Arial;
+    font-size: 0.8rem;
+    padding-left: 4px;
+    margin-left: auto;
+  }
 `;
