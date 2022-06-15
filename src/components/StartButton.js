@@ -7,7 +7,10 @@ const StartButton = ({ callback }) => {
   return (
     <StyledStartButton
       onClick={callback}>
-      Start Game
+      <span>
+        Start
+      </span>
+      <i></i>
     </StyledStartButton>
   )
 }

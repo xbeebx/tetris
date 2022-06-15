@@ -15,9 +15,15 @@ export const StyledTetris = styled.div`
   max-width: 900px;
 
   aside {
-    width: 100%;
-    max-width: 200px;
-    display: block;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
     padding: 0 20px;
+
+    div {
+      min-width: 200px;
+    }
   }
 `;

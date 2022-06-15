@@ -6,7 +6,10 @@ import { StyledDisplay } from './styles/StyledDisplay';
 
 const Display = ({ gameOver, text, value }) => {
   const props = useSpring({
-    value: value || 0
+    to:
+    {
+      value: value || 0,
+    }
   })
 
   return (
@@ -16,7 +19,7 @@ const Display = ({ gameOver, text, value }) => {
 
       {/* animate the value */}
       {!gameOver &&
-        <animated.span>{props.value.interpolate(val => Math.floor(val))}</animated.span>
+        <animated.span>{props.value.to(val => Math.floor(val))}</animated.span>
       }
     </StyledDisplay>
   )
