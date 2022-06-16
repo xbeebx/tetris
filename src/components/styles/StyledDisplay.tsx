@@ -1,6 +1,7 @@
+import { StyledDisplayProps } from 'src/types/DisplayTypes';
 import styled from 'styled-components';
 
-export const StyledDisplay = styled.div`
+export const StyledDisplay = styled.div<StyledDisplayProps>`
   box-sizing: border-box;
   display: flex;
   align-items: center;

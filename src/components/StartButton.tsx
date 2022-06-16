@@ -1,9 +1,10 @@
 import React from 'react';
+import { STARTBUTTON_TYPE } from 'src/types/StartButtonTypes';
 
 // styled components
 import { StyledStartButton } from './styles/StyledStartButton';
 
-const StartButton = ({ callback }) => {
+const StartButton = ({ callback }: STARTBUTTON_TYPE) => {
   return (
     <StyledStartButton
       onClick={callback}>

@@ -1,0 +1,1 @@
+export type STAGE_TYPE = Array<Array<number | string>>;

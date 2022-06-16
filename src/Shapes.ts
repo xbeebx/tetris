@@ -1,4 +1,6 @@
-export const SHAPES = {
+import { SHAPES_TYPE, SHAPE_DEF_TYPE } from "./types/ShapeTypes";
+
+export const SHAPES: SHAPES_TYPE = {
   0: {
     shape: [[0]],
     color: '0, 0, 0'
@@ -61,12 +63,18 @@ export const SHAPES = {
   },
 }
 
-export const randomShape = () => {
+export const randomShape = (): SHAPE_DEF_TYPE | undefined => {
   // all possible shapes
   const shape = 'IJLOSTZ';
 
   // get a random shape index
   const randomShape = shape[Math.floor(Math.random() * shape.length)]
+
+  // should not happen!
+  if (randomShape === undefined) {
+    return undefined;
+  }
+
   return (
     SHAPES[randomShape]
   )

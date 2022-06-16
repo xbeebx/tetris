@@ -4,12 +4,13 @@ import React from 'react';
 import { StyledCell } from './styles/StyledCell';
 
 import { SHAPES } from '../Shapes';
+import { CellProps } from 'src/types/CellTypes';
 
-const Cell = ({ type }) => {
+const Cell = ({ type }: CellProps) => {
   return (
     <StyledCell
       type={type}
-      color={SHAPES[type].color}/>
+      color={SHAPES[type]?.color}/>
   )
 }
 

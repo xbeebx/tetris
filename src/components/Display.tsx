@@ -1,10 +1,11 @@
 import React from 'react';
 import { useSpring, animated } from 'react-spring';
+import { DisplayProps } from 'src/types/DisplayTypes';
 
 // styled components
 import { StyledDisplay } from './styles/StyledDisplay';
 
-const Display = ({ gameOver, text, value }) => {
+const Display = ({ gameOver, text, value }: DisplayProps) => {
   const props = useSpring({
     to:
     {

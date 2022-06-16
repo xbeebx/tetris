@@ -1,16 +1,19 @@
 import { useCallback, useState } from 'react';
+import { PLAYER_POS_TYPE, PLAYER_TYPE } from 'src/types/PlayerTypes';
+import { SHAPE_TYPE } from 'src/types/ShapeTypes';
+import { STAGE_TYPE } from 'src/types/StageTypes';
 import { checkCollision, STAGE_WIDTH } from '../GameHelpers';
 
 import { SHAPES, randomShape } from '../Shapes';
 
-export const usePlayer = () => {
-  const [player, setPlayer] = useState({
+export const usePlayer = (): [player: PLAYER_TYPE, updatePlayerPos: Function, resetPlayer: Function, playerRotate: Function] => {
+  const [player, setPlayer] = useState<PLAYER_TYPE>({
     pos: { x: 0, y: 0 },
-    shape: SHAPES[0].shape,
+    shape: SHAPES[0]?.shape,
     collided: false
   });
 
-  const rotate = (shape, direction) => {
+  const rotate = (shape: SHAPE_TYPE, direction: number) => {
     // make the rows to become cols
     const rotatedShape = shape.map((_, index) => {
       return shape.map((col) => {
@@ -27,7 +30,7 @@ export const usePlayer = () => {
     }
   }
 
-  const playerRotate = (stage, direction) => {
+  const playerRotate = (stage: STAGE_TYPE, direction: number) => {
     const clonedPlayer = JSON.parse(JSON.stringify(player));
     clonedPlayer.shape = rotate(clonedPlayer.shape, direction);
 
@@ -46,7 +49,7 @@ export const usePlayer = () => {
     setPlayer(clonedPlayer);
   }
 
-  const updatePlayerPos = ({x, y, collided}) => {
+  const updatePlayerPos = ({x, y, collided}: PLAYER_POS_TYPE) => {
     setPlayer(prev => ({
       ...prev,
       pos: { x: (prev.pos.x + x), y: (prev.pos.y + y)},
@@ -57,7 +60,7 @@ export const usePlayer = () => {
   const resetPlayer = useCallback(() => {
     setPlayer({
       pos: {x: STAGE_WIDTH / 2 - 2, y: 0},
-      shape: randomShape().shape,
+      shape: randomShape()?.shape,
       collided: false,
     })
   }, [])
