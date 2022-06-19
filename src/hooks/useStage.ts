@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
+import { CLEAR_SHAPE_CELL_VALUE, EMPTY_SHAPE_CELL, MERGED_SHAPE_CELL_VALUE } from 'src/Shapes';
 import { PLAYER_TYPE } from 'src/types/PlayerTypes';
 import { STAGE_TYPE } from 'src/types/StageTypes';
 
-import { createStage } from '../GameHelpers';
+import { createStage, STAGE_WIDTH } from '../GameHelpers';
 
 export const useStage = (player: PLAYER_TYPE, resetPlayer: Function): [stage: STAGE_TYPE, setStage: Function, rowsCleared: number] => {
   const [stage, setStage] = useState<STAGE_TYPE>(createStage());
@@ -12,46 +13,40 @@ export const useStage = (player: PLAYER_TYPE, resetPlayer: Function): [stage: ST
     setRowsCleared(0);
 
     const sweepRows = (newStage: STAGE_TYPE) => {
-      return newStage.reduce((ack, row) => {
-        // TODO: fix tserror
-        // @ts-ignore
-        if (row.findIndex(cell => cell[0] === 0) === -1) {
+      newStage.forEach((row, rowIndex) => {
+        if (row.findIndex(cell => cell.type === '0') === -1) {
           setRowsCleared(prev => prev + 1);
-          // TODO: fix tserror
-          // @ts-ignore
-          ack.unshift(new Array(newStage[0].length).fill([0, 'clear']));
-          return ack;
-        }
 
-        // TODO: fix tserror
-        // @ts-ignore
-        ack.push(row);
-        return ack;
-      }, []);
+          // remove the row with all filled cells
+          newStage.splice(rowIndex, 1);
+
+          // add on top an empty row
+          newStage.unshift(new Array<{type: string, status: string}>(STAGE_WIDTH).fill({ type: EMPTY_SHAPE_CELL, status: CLEAR_SHAPE_CELL_VALUE }));
+        }
+      })
     }
 
-    const updateStage = (prevStage: STAGE_TYPE) => {
+    const updateStage = (prevStage: STAGE_TYPE): STAGE_TYPE => {
       // first flush the stage
       const newStage = prevStage.map((row) => {
         return (
           row.map((cell) => {
-            // TODO: fix tserror
-            // @ts-ignore
-            return cell[1] === 'clear' ? [0, 'clear'] : cell;
+            return cell.status === CLEAR_SHAPE_CELL_VALUE ? { type: EMPTY_SHAPE_CELL, status: CLEAR_SHAPE_CELL_VALUE } : cell;
           })
         )
       });
 
       // draw the shape
-      player.shape?.forEach((row, y) => {
+      player.shape.forEach((row, y) => {
         row.forEach((value, x) => {
-          if (value !== 0) {
-            // TODO: fix tserror
-            // @ts-ignore
-            newStage[y + player.pos.y][x + player.pos.x] = [
-              value,
-              `${player.collided ? 'merged' : 'clear'}`
-            ];
+          if (value !== EMPTY_SHAPE_CELL) {
+            const nextRow = newStage[y + player.pos.y];
+            if (nextRow) {
+              nextRow[x + player.pos.x] = {
+                type: value,
+                status: `${player.collided ? MERGED_SHAPE_CELL_VALUE : CLEAR_SHAPE_CELL_VALUE}`
+              };
+            }
           }
         });
       });
@@ -59,16 +54,12 @@ export const useStage = (player: PLAYER_TYPE, resetPlayer: Function): [stage: ST
       // check collision
       if (player.collided) {
         resetPlayer();
-        // TODO: fix tserror
-        // @ts-ignore
-        return sweepRows(newStage);
+        sweepRows(newStage);
       }
 
       return newStage;
     };
 
-    // TODO: fix tserror
-    // @ts-ignore
     setStage((prev) => updateStage(prev));
   }, [player, resetPlayer]);
 

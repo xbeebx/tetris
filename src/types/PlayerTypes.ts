@@ -8,6 +8,6 @@ export type PLAYER_POS_TYPE = {
 
 export type PLAYER_TYPE = {
   pos: { x: number, y: number },
-  shape?: SHAPE_TYPE,
+  shape: SHAPE_TYPE,
   collided: boolean,
 }

@@ -21,9 +21,7 @@ const Stage = ({ stage }: STAGE_PROP) => {
         stage.map((row) => {
           // loop though the cells
           return row.map((cell, x) => {
-            // TODO: FIX type!
-            // @ts-ignore
-            return <Cell key={x} type={cell[0]} />;
+            return <Cell key={x} type={cell.type} />;
           })
         })
       }

@@ -4,12 +4,12 @@ import { SHAPE_TYPE } from 'src/types/ShapeTypes';
 import { STAGE_TYPE } from 'src/types/StageTypes';
 import { checkCollision, STAGE_WIDTH } from '../GameHelpers';
 
-import { SHAPES, randomShape } from '../Shapes';
+import { randomShape, NO_SHAPE } from '../Shapes';
 
 export const usePlayer = (): [player: PLAYER_TYPE, updatePlayerPos: Function, resetPlayer: Function, playerRotate: Function] => {
   const [player, setPlayer] = useState<PLAYER_TYPE>({
     pos: { x: 0, y: 0 },
-    shape: SHAPES[0]?.shape,
+    shape: NO_SHAPE.shape,
     collided: false
   });
 
@@ -60,7 +60,7 @@ export const usePlayer = (): [player: PLAYER_TYPE, updatePlayerPos: Function, re
   const resetPlayer = useCallback(() => {
     setPlayer({
       pos: {x: STAGE_WIDTH / 2 - 2, y: 0},
-      shape: randomShape()?.shape,
+      shape: randomShape().shape,
       collided: false,
     })
   }, [])
