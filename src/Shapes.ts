@@ -89,12 +89,7 @@ export const randomShape = (): SHAPE_DEF_TYPE => {
   const shapes = 'IJLOSTZ';
 
   // get a random shape index
-  const randomShape = shapes[Math.floor(Math.random() * shapes.length)]
-
-  // should not happen!
-  if (randomShape === undefined) {
-    return SHAPE_I;
-  }
+  const randomShape = shapes[Math.floor(Math.random() * shapes.length)] || 'I'
 
   // default shape should be never returned! Just for typescript.
   return SHAPES[randomShape] || SHAPE_I;
