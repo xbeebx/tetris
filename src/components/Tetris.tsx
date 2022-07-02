@@ -69,6 +69,10 @@ const Tetris = () => {
       if (keyCode === 40) {
         setDropTime(1000 / (level + 1) + 200);
       }
+      // up arrow
+      else if (keyCode === 38) {
+        playerRotate(stage, 1)
+      }
     }
   }
 
@@ -90,10 +94,6 @@ const Tetris = () => {
       // down arrow
       else if (keyCode === 40) {
         dropPlayer();
-      }
-      // up arrow
-      else if (keyCode === 38) {
-        playerRotate(stage, 1)
       }
     }
   };

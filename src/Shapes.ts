@@ -9,7 +9,7 @@ export const NO_SHAPE = {
   color: '0, 0, 0'
 };
 
-const SHAPE_I = {
+export const SHAPE_I = {
   shape: [
     [EMPTY_SHAPE_CELL, 'I', EMPTY_SHAPE_CELL, EMPTY_SHAPE_CELL],
     [EMPTY_SHAPE_CELL, 'I', EMPTY_SHAPE_CELL, EMPTY_SHAPE_CELL],
@@ -19,7 +19,7 @@ const SHAPE_I = {
   color: '80, 227, 230'
 };
 
-const SHAPE_J = {
+export const SHAPE_J = {
   shape: [
     [EMPTY_SHAPE_CELL, 'J', EMPTY_SHAPE_CELL],
     [EMPTY_SHAPE_CELL, 'J', EMPTY_SHAPE_CELL],
@@ -28,7 +28,7 @@ const SHAPE_J = {
   color: '36, 59, 223'
 };
 
-const SHAPE_L = {
+export const SHAPE_L = {
   shape: [
     [EMPTY_SHAPE_CELL, 'L', EMPTY_SHAPE_CELL],
     [EMPTY_SHAPE_CELL, 'L', EMPTY_SHAPE_CELL],
@@ -37,7 +37,7 @@ const SHAPE_L = {
   color: '223, 173, 36'
 };
 
-const SHAPE_O = {
+export const SHAPE_O = {
   shape: [
     ['O', 'O'],
     ['O', 'O'],
@@ -45,7 +45,7 @@ const SHAPE_O = {
   color: '223, 217, 36'
 };
 
-const SHAPE_S = {
+export const SHAPE_S = {
   shape: [
     [EMPTY_SHAPE_CELL, 'S', 'S'],
     ['S', 'S', EMPTY_SHAPE_CELL],
@@ -54,7 +54,7 @@ const SHAPE_S = {
   color: '48, 211, 56'
 };
 
-const SHAPE_T = {
+export const SHAPE_T = {
   shape: [
     [EMPTY_SHAPE_CELL, EMPTY_SHAPE_CELL, EMPTY_SHAPE_CELL],
     ['T', 'T', 'T'],
@@ -63,7 +63,7 @@ const SHAPE_T = {
   color: '132, 61, 198'
 };
 
-const SHAPE_Z = {
+export const SHAPE_Z = {
   shape: [
     ['Z', 'Z', EMPTY_SHAPE_CELL],
     [EMPTY_SHAPE_CELL, 'Z', 'Z'],

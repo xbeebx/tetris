@@ -9,7 +9,7 @@ export const useStage = (player: PLAYER_TYPE, resetPlayer: Function): [stage: ST
   const [stage, setStage] = useState<STAGE_TYPE>(createStage());
   const [rowsCleared, setRowsCleared] = useState<number>(0);
 
-  const pop = useMemo(() => new Audio(process.env.PUBLIC_URL + '/pop.mp3'), []);
+  const pop = useMemo(() => new Audio(process.env.PUBLIC_URL + '/sounds/pop.mp3'), []);
 
   useEffect(() => {
     setRowsCleared(0);
@@ -33,7 +33,6 @@ export const useStage = (player: PLAYER_TYPE, resetPlayer: Function): [stage: ST
 
       // play sound if there was mininum 1 line completly filled with blocks
       if(removeCounter > 0) {
-        console.log('play sound!');
         pop.play();
       }
     }
