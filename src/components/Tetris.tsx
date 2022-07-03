@@ -63,14 +63,14 @@ const Tetris = () => {
     }
   };
 
-  const keyUp = ({ keyCode }: KeyboardEvent<HTMLDivElement>) => {
+  const keyUp = ({ key }: KeyboardEvent<HTMLDivElement>) => {
     if (!gameOver) {
       // down arrow
-      if (keyCode === 40) {
+      if (key === 'ArrowDown') {
         setDropTime(1000 / (level + 1) + 200);
       }
       // up arrow
-      else if (keyCode === 38) {
+      else if (key === 'ArrowUp') {
         playerRotate(stage, 1)
       }
     }
@@ -81,18 +81,18 @@ const Tetris = () => {
     drop();
   };
 
-  const move = ({ keyCode }: KeyboardEvent<HTMLDivElement>) => {
+  const move = ({ key }: KeyboardEvent<HTMLDivElement>) => {
     if (!gameOver) {
       // left arrow
-      if (keyCode === 37) {
+      if (key === 'ArrowLeft') {
         movePlayer(-1);
       }
       // right arrow
-      else if (keyCode === 39) {
+      else if (key === 'ArrowRight') {
         movePlayer(1);
       }
       // down arrow
-      else if (keyCode === 40) {
+      else if (key === 'ArrowDown') {
         dropPlayer();
       }
     }
